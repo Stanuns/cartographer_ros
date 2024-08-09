@@ -49,6 +49,7 @@ find_package(tf2_ros REQUIRED)
 find_package(urdf REQUIRED)
 find_package(urdfdom_headers REQUIRED)
 find_package(visualization_msgs REQUIRED)
+find_package(message_filters REQUIRED)
 
 include_directories(
   include
@@ -134,6 +135,10 @@ add_executable(cartographer_rosbag_validate src/rosbag_validate_main.cpp)
 target_link_libraries(cartographer_rosbag_validate ${PROJECT_NAME})
 ament_target_dependencies(cartographer_rosbag_validate ${dependencies})
 
+add_executable(cartographer_odom_preproc src/odom_preproc_main.cpp)
+target_link_libraries(cartographer_odom_preproc ${PROJECT_NAME})
+ament_target_dependencies(cartographer_odom_preproc ${dependencies})
+
 if($ENV{ROS_DISTRO} MATCHES "humble" OR $ENV{ROS_DISTRO} MATCHES "iron")
   target_compile_definitions(${PROJECT_NAME} PRIVATE PRE_JAZZY_SERIALIZED_BAG_MSG_FIELD_NAME)
   target_compile_definitions(cartographer_rosbag_validate PRIVATE PRE_JAZZY_SERIALIZED_BAG_MSG_FIELD_NAME)
@@ -154,6 +159,7 @@ install(TARGETS
   cartographer_pbstream_map_publisher
   cartographer_pbstream_to_ros_map
   cartographer_rosbag_validate
+  cartographer_odom_preproc
   RUNTIME DESTINATION lib/${PROJECT_NAME}
 )
 

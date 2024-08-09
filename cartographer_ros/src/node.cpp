@@ -473,7 +473,7 @@ void Node::LaunchSubscribers(const TrajectoryOptions& options,
                                                 node_, this),
          kImuTopic});
   }
-
+  //debug start
   if (options.use_odometry) {
     subscribers_[trajectory_id].push_back(
         {SubscribeWithHandler<nav_msgs::msg::Odometry>(&Node::HandleOdometryMessage,

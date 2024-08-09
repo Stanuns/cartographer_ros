@@ -98,6 +98,8 @@
   <depend>urdf</depend>
   <depend>visualization_msgs</depend>
 
+  <depend>message_filters</depend>
+
   <exec_depend>launch</exec_depend>
   <exec_depend>robot_state_publisher</exec_depend>
 
